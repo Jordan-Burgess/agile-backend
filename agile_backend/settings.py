@@ -85,6 +85,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'agile',
+        'USER': 'postgres',
+        'PASSWORD': 'rory',
+        'HOST': 'localhost',
+        'PORT': 5432
     }
 }
 
