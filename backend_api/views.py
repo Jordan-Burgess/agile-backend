@@ -16,3 +16,8 @@ class Users(APIView):
         data = Profile.objects.all()
         serializer = ProfileSerializer(data, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+    def post(self, request):
+        data = Profile.objects.all()
+        serializer = ProfileSerializer(data, many=True)
+        return JsonResponse(serializer.data, safe=False)
