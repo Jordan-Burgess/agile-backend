@@ -16,13 +16,6 @@ class Profile(models.Model):
     github_link = models.CharField(max_length=200)
     linkedin_link = models.CharField(max_length=200)
     portfolio_link = models.CharField(max_length=200) 
-    figma_link = models.CharField(max_length=200) 
-    jira_link = models.CharField(max_length=200) 
-    trello_link = models.CharField(max_length=200) 
-    slack_link = models.CharField(max_length=200) 
-    google_drive_link = models.CharField(max_length=200) 
-    microsoft_teams_links = models.CharField(max_length=200) 
-    zoom_link = models.CharField(max_length=200) 
     role = models.CharField(max_length=2, choices=ROLE_CHOICES)
     tools = models.TextField()
     bootcamp_grad = models.BooleanField(default= False)
@@ -54,6 +47,15 @@ class Project(models.Model):
         ('TRV', 'Travel'),
     ]
     title = models.CharField(max_length=50)
+    figma_link = models.CharField(max_length=200) 
+    jira_link = models.CharField(max_length=200) 
+    trello_link = models.CharField(max_length=200) 
+    slack_link = models.CharField(max_length=200) 
+    google_drive_link = models.CharField(max_length=200) 
+    microsoft_teams_links = models.CharField(max_length=200) 
+    zoom_link = models.CharField(max_length=200) 
+    github_frontend_link = models.CharField(max_length=200)
+    github_frontend_link = models.CharField(max_length=200)
     topic = models.CharField(max_length=3,choices=TOPIC_CHOICES)
     
 
