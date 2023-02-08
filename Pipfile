@@ -11,6 +11,7 @@ djangorestframework = "*"
 django-heroku = "*"
 gunicorn = "*"
 whitenoise = "*"
+requests = "*"
 
 [dev-packages]
 
