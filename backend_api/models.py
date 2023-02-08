@@ -55,8 +55,6 @@ class Project(models.Model):
     ]
     title = models.CharField(max_length=50)
     topic = models.CharField(max_length=3,choices=TOPIC_CHOICES)
-    technology = models.TextField()
-    roles = models.TextField()
-
+    
 
     
