@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from rest_framework.views import APIView
 from django.http import JsonResponse, HttpResponse
-from .serializers import ProfileSerializer, ProjectSerializer
+from .serializers import ProfileSerializer, ProjectSerializer, UserSerializer
 from .models import Profile, Project, User
 
 class Info(View):
