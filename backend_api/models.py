@@ -55,7 +55,7 @@ class Project(models.Model):
     microsoft_teams_links = models.CharField(max_length=200) 
     zoom_link = models.CharField(max_length=200) 
     github_frontend_link = models.CharField(max_length=200)
-    github_frontend_link = models.CharField(max_length=200)
+    github_backend_link = models.CharField(max_length=200)
     topic = models.CharField(max_length=3,choices=TOPIC_CHOICES)
     
 

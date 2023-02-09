@@ -1,9 +1,12 @@
 from django.shortcuts import render
 from django.views import View
 from rest_framework.views import APIView
+from rest_framework.response import Response
 from django.http import JsonResponse, HttpResponse
 from .serializers import ProfileSerializer, ProjectSerializer, UserSerializer
 from .models import Profile, Project, User
+from django.http import Http404
+from rest_framework import status
 
 class Info(View):
     def get(self, request):
@@ -38,10 +41,41 @@ class ProfileInfo(APIView):
         else:
             return JsonResponse(serializer.errors)
 
-
-
 class Projects(APIView):
     def get(self, request):
         data = Project.objects.all()
         serializer = ProjectSerializer(data, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+    def post(self, request):
+        serializer = ProjectSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return JsonResponse(serializer.data, safe=False)
+        else:
+            return JsonResponse(serializer.errors)
+
+class ProjectDetail(APIView):
+    def get_object(self, pk):
+        try:
+            return Project.objects.get(pk=pk)
+        except Project.DoesNotExist:
+            raise Http404
+
+    def get(self, request, pk, format=None):
+        project = self.get_object(pk)
+        serializer = ProjectSerializer(project)
+        return Response(serializer.data)
+
+    def put(self, request, pk, format=None):
+        project = self.get_object(pk)
+        serializer = ProjectSerializer(project, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors)
+
+    def delete(self, request, pk, format=None):
+        project = self.get_object(pk)
+        project.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
