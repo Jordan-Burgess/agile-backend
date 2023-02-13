@@ -48,6 +48,7 @@ class Projects(APIView):
         return JsonResponse(serializer.data, safe=False)
 
     def post(self, request):
+        request.data['user'] = id
         serializer = ProjectSerializer(data=request.data)
         if serializer.is_valid():
             serializer.save()
