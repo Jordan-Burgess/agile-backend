@@ -39,7 +39,6 @@ class ProfileInfo(APIView):
             return JsonResponse(serializer.errors)
 
 
-
 class Projects(APIView):
     def get(self, request):
         data = Project.objects.all()
