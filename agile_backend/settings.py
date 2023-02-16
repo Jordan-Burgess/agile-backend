@@ -62,6 +62,7 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
 "https://agile-backend1.herokuapp.com/",
 "http://127.0.0.1:8000"
+"http://localhost:8000"
 ]
 
 CORS_ALLOW_METHODS = [
