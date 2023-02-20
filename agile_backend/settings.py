@@ -60,7 +60,7 @@ REST_FRAMEWORK = {
 }
 
 CORS_ALLOWED_ORIGINS = [
-"https://agile-backend1.herokuapp.com/",
+"https://agile-backend1.herokuapp.com",
 "http://127.0.0.1:8000",
 "http://localhost:8000",
 ]
@@ -86,7 +86,7 @@ CORS_ALLOW_HEADERS = [
 'x-requested-with',
 ]
 
-CORS_ALLOW_CREDENTIALS = [True]
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'agile_backend.urls'
 
@@ -116,8 +116,6 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'agile',
-        'USER': 'postgres',
-        'PASSWORD': 'rory'
     }
 }
 
