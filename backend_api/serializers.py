@@ -5,7 +5,7 @@ from .models import Profile, Project, User
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ('id')
+        fields = "__all__"
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
