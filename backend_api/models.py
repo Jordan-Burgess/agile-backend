@@ -61,9 +61,9 @@ class Project(models.Model):
     description = models.TextField(blank=True)
     project_members = models.ManyToManyField(
         User, blank=False)  # Must at least receive the creating user as a member
-    tech = ArrayField(models.CharField(max_length=200), blank=True)
+    tech = ArrayField(models.CharField(max_length=200), blank=True, null=True)
     roles = ArrayField(models.CharField(
-        max_length=2, choices=ROLE_CHOICES), blank=True)
+        max_length=2, choices=ROLE_CHOICES), blank=True, null=True)
     figma_link = models.CharField(max_length=200, blank=True)
     jira_link = models.CharField(max_length=200, blank=True)
     trello_link = models.CharField(max_length=200, blank=True)
@@ -74,7 +74,7 @@ class Project(models.Model):
     github_frontend_link = models.CharField(max_length=200, blank=True)
     github_backend_link = models.CharField(max_length=200, blank=True)
     topics = ArrayField(models.CharField(
-        max_length=3, choices=TOPIC_CHOICES), blank=True)
+        max_length=3, choices=TOPIC_CHOICES), blank=True, null=True)
 
     def __str__(self):
         return self.title
