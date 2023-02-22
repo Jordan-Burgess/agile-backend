@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'backend_api',
     'rest_framework',
     'corsheaders',
+    'agile_backend',
 ]
 
 MIDDLEWARE = [
@@ -164,3 +165,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 django_heroku.settings(locals())
+
+AUTH_USER_MODEL = 'agile_backend.CustomUser'
