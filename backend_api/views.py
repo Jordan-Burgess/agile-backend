@@ -2,11 +2,12 @@ from django.shortcuts import render
 from django.views import View
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.permissions import AllowAny
 from django.http import JsonResponse, HttpResponse
 from .serializers import ProfileSerializer, ProjectSerializer, UserSerializer
 from .models import Profile, Project, User
 from django.http import Http404
-from rest_framework import status
+from rest_framework import status, generics
 
 class Info(View):
     def get(self, request):
@@ -19,6 +20,11 @@ class Users(APIView):
         data = Profile.objects.all()
         serializer = ProfileSerializer(data, many=True)
         return JsonResponse(serializer.data, safe=False)
+
+class RegisterView(generics.CreateAPIView):
+    queryset = User.objects.all()
+    permission_classes = (AllowAny,)
+    serializer_class = RegisterSerializer
 
 class ProfileInfo(APIView):
     def get_user_auth(self, id):

@@ -1,6 +1,23 @@
 from rest_framework import serializers
 from .models import Profile, Project, User
 
+
+class RegisterSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ('id', 'username', 'password', 'password2', 'email', 'first_name', 'last_name')
+
+    def validate(self, attrs):
+        if attrs['password'] != attrs['password2']:
+            raise serializers.ValidationError({"password": "Passwords did not match"})
+        return attrs
+
+    def create(self, validated_data):
+        user = User.objects.create(id=validated_data['id'], email=validated_data['email'])
+        user.save()
+        return user
+
+
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
