@@ -60,7 +60,7 @@ class Project(models.Model):
     title = models.CharField(max_length=50, blank=False)
     description = models.TextField(blank=True)
     project_members = models.ManyToManyField(
-        User, on_delete=models.CASCADE, blank=False)  # Must at least receive the creating user as a member
+        User, blank=False)  # Must at least receive the creating user as a member
     tech = ArrayField(models.CharField(max_length=200), blank=True)
     roles = ArrayField(models.CharField(
         max_length=2, choices=ROLE_CHOICES), blank=True)
