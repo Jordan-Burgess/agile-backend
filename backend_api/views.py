@@ -8,6 +8,7 @@ from .serializers import ProfileSerializer, ProjectSerializer, UserSerializer, R
 from .models import Profile, Project, User
 from django.http import Http404
 from rest_framework import status, generics
+from django.core.exceptions import ValidationError
 
 class Info(View):
     def get(self, request):
@@ -22,9 +23,15 @@ class Users(APIView):
         return JsonResponse(serializer.data, safe=False)
 
 class RegisterView(generics.CreateAPIView):
-    queryset = User.objects.all()
-    permission_classes = (AllowAny,)
-    serializer_class = RegisterSerializer
+    def perform_create(self, serializer):
+        queryset = User.objects.filter(id=self.request.user.id)
+        if queryset.exists():
+            raise ValidationError('You have already signed up')
+        return RegisterSerializer
+
+    # queryset = User.objects.all()
+    # permission_classes = (AllowAny,)
+    # serializer_class = RegisterSerializer
 
 class ProfileInfo(APIView):
     def get_user_auth(self, id):
